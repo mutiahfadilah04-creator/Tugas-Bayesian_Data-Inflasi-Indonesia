@@ -1,4 +1,3 @@
-# Tugas-Bayesian_Data-Inflasi-Indonesia
 # Analisis Inflasi Bayesian - Indonesia 2025
 
 Proyek ini menganalisis data inflasi bulanan month-to-month (M-to-M) 
