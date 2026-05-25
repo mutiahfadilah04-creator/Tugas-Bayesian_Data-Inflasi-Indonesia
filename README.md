@@ -55,3 +55,10 @@ Kesimpulan utama:
 - Matplotlib
 - Seaborn
 - SciPy
+
+## Sumber Data
+
+- **Data inflasi 2025**: Badan Pusat Statistik (BPS RI)
+  https://www.bps.go.id/id/statistics-table/2/MjI2MiMy/inflasi-month-to-month--november-2025.html
+- **Referensi definisi inflasi**: Bank Indonesia
+  https://www.bi.go.id/id/fungsi-utama/moneter/inflasi/default.aspx
