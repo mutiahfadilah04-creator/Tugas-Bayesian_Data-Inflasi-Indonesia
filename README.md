@@ -11,13 +11,47 @@ Proyek ini menganalisis data inflasi bulanan month-to-month (M-to-M) 38 provinsi
 
 Model hierarki digunakan untuk memisahkan tiga sumber variasi secara simultan: rata-rata inflasi nasional, efek spesifik tiap provinsi, dan efek spesifik tiap bulan. Evaluasi dilakukan melalui Posterior Predictive Check (PPC) dan analisis sensitivitas terhadap spesifikasi prior dan likelihood.
 
-## Struktur File
-├── Proyek_Bayessian_Inflasi_Indonesia_2025.ipynb
-│       Kode analisis utama (model, PPC, sensitivitas, LOO-CV)
-├── Inflasi Bulanan (M-to-M) 38 Provinsi 2025.csv
-│       Data inflasi 2025 — variabel respons (456 observasi)
-├── Inflasi Bulanan (M-to-M) 38 Provinsi 2024.csv
-│       Data inflasi 2024 — sumber prior informatif
-├── requirements.txt
-│       Daftar library Python yang digunakan
-└── README.md
+## Metode
+
+### Model
+- Model hierarki Bayesian dua arah: efek provinsi + efek bulan
+- Distribusi likelihood: Normal dan Student-t (robust terhadap outlier)
+- Estimasi posterior via NUTS (No-U-Turn Sampler) dengan PyMC v5
+- Non-centered parameterization untuk efisiensi sampling
+
+### Skenario Model (6 total)
+
+| Model | Prior | Likelihood |
+|-------|-------|------------|
+| M1 | Non-informatif | Normal |
+| M2 | Weakly Informative | Normal |
+| M3 | Informatif (data 2024) | Normal |
+| M4 | Non-informatif | Student-t |
+| M5 | Weakly Informative | Student-t |
+| M6 | Informatif (data 2024) | Student-t |
+
+### Evaluasi
+
+- **PPC**: density overlay, Q-Q Plot Bayesian, rootogram, posterior predictive p-value (PPP)
+- **Seleksi model**: LOO-CV (Leave-One-Out Cross-Validation) via ArviZ
+- **Sensitivitas**: power-scaling prior dan likelihood (Kallioinen et al., 2024)
+
+## Hasil Utama
+
+Model terbaik: **M6 — Prior Informatif + Student-t likelihood**
+ELPD LOO-CV = **-327.26**
+
+Kesimpulan utama:
+- Distribusi Student-t secara konsisten lebih baik dari Normal karena data inflasi memiliki ekor tebal akibat outlier musiman seperti Ramadan
+- Prior informatif dari data 2024 meningkatkan presisi estimasi
+- Analisis sensitivitas menunjukkan kesimpulan robust terhadap perubahan spesifikasi prior
+
+## Library yang Digunakan
+
+- PyMC >= 5.0
+- ArviZ >= 0.17
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- SciPy
