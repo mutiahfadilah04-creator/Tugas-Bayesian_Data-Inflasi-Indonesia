@@ -11,6 +11,13 @@ Proyek ini menganalisis data inflasi bulanan month-to-month (M-to-M) 38 provinsi
 
 Model hierarki digunakan untuk memisahkan tiga sumber variasi secara simultan: rata-rata inflasi nasional, efek spesifik tiap provinsi, dan efek spesifik tiap bulan. Evaluasi dilakukan melalui Posterior Predictive Check (PPC) dan analisis sensitivitas terhadap spesifikasi prior dan likelihood.
 
----
-
 ## Struktur File
+├── Proyek_Bayessian_Inflasi_Indonesia_2025.ipynb
+│       Kode analisis utama (model, PPC, sensitivitas, LOO-CV)
+├── Inflasi Bulanan (M-to-M) 38 Provinsi 2025.csv
+│       Data inflasi 2025 — variabel respons (456 observasi)
+├── Inflasi Bulanan (M-to-M) 38 Provinsi 2024.csv
+│       Data inflasi 2024 — sumber prior informatif
+├── requirements.txt
+│       Daftar library Python yang digunakan
+└── README.md
